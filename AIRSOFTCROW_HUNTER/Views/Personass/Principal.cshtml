@@ -1,0 +1,81 @@
+﻿@model List<Foto>
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+
+    .bg-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1; /* Esto asegura que el video quede detrás del contenido */
+    }
+
+
+    .content {
+        position: relative;
+        z-index: 2;
+        background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+        color: white;
+        padding: 20px;
+    }
+
+    .header, .footer {
+        background-color: #FFF; /* O cualquier color que se ajuste a tu diseño */
+        z-index: 10; /* Asegúrate de que estén sobre el video */
+    }
+</style>
+
+
+<video autoplay loop  class="bg-video">
+    <source src="~/video/Tomas aereas.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+</video>
+
+<div class="container-fluid content color">
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <h1>Team Airsoft</h1>
+            <p>
+                Cazadores de Cuervos 🇺🇾: Unidad y Estrategia en el Airsoft
+                "Si Vis Pacem, Para Bellum"
+
+                Cazadores de Cuervos es un destacado equipo de airsoft en Uruguay, integrado por profesionales de fuerzas policiales y militares. Unidos por la pasión por el airsoft y la precisión de las réplicas, nuestro equipo representa la fusión perfecta entre táctica, habilidad y camaradería.
+
+                Desde nuestra formación, nos hemos dedicado a elevar el estándar del airsoft, buscando no solo la victoria, sino también el perfeccionamiento en cada aspecto del juego. Cazadores de Cuervos simboliza más que un equipo; es una hermandad forjada en el respeto mutuo y el amor por la estrategia y la acción.
+
+                Descubre la esencia de la verdadera táctica y unidad con nosotros.
+             </p>
+            <p>Año de surgimiento: 2024</p>
+        </div>
+        <div class="col-md-6 col-12">
+            <!-- Slider de fotos -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @{
+                        bool isFirst = true;
+                        foreach (var foto in Model)
+                        {
+                            <div class="carousel-item @(isFirst ? "active" : "")">
+                                <img src="data:image/png;base64,@(Convert.ToBase64String(foto.Imagen))" class="d-block  img-fluid mb-3 " alt="Fotos">
+                            </div>
+                            isFirst = false;
+                        }
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

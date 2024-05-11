@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+
+    <div class="login ">
+        <h1>Logueo</h1>
+        <form method="post">
+            <input type="text" name="n" id="txtnombre" placeholder="Nombre" required="required" />
+            <input type="password" name="c" id="txtcodigo" placeholder="Contraseña" required="required" />
+            <button type="submit" class="btn btn-primary btn-block btn-large" id="btnEntrar">Entrar</button>
+            <p id="res"></p>
+        </form>
+        <p>@ViewBag.mje</p>
+    </div>
+

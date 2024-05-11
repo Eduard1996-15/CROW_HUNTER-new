@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AIRSOFTCROW_HUNTER.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="cabeza ">
+
+        <img src="~/images/logo.jpg" class="logo" title="logo representativo" alt="logo de hunters">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HUNTERS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admins" asp-action="Index">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Personass" asp-action="Principal">Bienvenidos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Personass" asp-action="Integrantes">Integrantes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Index">Ventas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Reparaciones" asp-action="Index">Reparaciones</a>
+                        </li>
+                        
+                       
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+    <hr />
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="index.html"><img  src="~/images/logo.jpg" alt="" class="img-fluid logo-footer"></a>
+                        <div class="footer-about">
+                            <p>Quieres saber mas sobre nosotros?  </p>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="useful-link">
+                            <h2>Useful Links</h2>
+                            <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
+                            <div class="use-links">
+                            <li><a href="Personass/principal"><i class="fa-solid fa-angles-right"></i> Home</a></li>
+                                <li><a href="about.html"><i class="fa-solid fa-angles-right"></i> About Us</a></li>
+                                <li><a href="gallery.html"><i class="fa-solid fa-angles-right"></i> Gallery</a></li>
+                                <li><a href="contact.html"><i class="fa-solid fa-angles-right"></i> Contact</a></li>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="social-links">
+                            <h2>Follow Us</h2>
+                            <img src="./assets/images/about/home_line.png" alt="">
+                            <div class="social-icons">
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+                                <li><a href="https://www.instagram.com/crowhunter.uy"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                            <li><a href="https://youtu.be/We_w8RTsJ9k?si=D9lombSUyqr9l-NI" target="_blank"><i class="fa-brands fa-linkedin-in"></i> Youtube</a></li>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="address">
+                            <h2>Address</h2>
+                            <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
+                            <div class="address-links">
+                                <li class="address1">
+                                    <i class="fa-solid fa-location-dot"></i> Palacio Peñarol
+                                </li>
+                                <li><a href=""><i class="fa-solid fa-phone"></i> Wts 093443323</a></li>
+                                <li><a href=""><i class="fa-solid fa-envelope"></i> mail@1234567.com</a></li>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </footer>
+        <!-- footer section end -->
+        <!-- footer copy right section start -->
+        <section id="copy-right">
+            <div class="copy-right-sec">
+                <i class="fa-solid fa-copyright"></i>
+            <p>Desarrollado por E.Suarez</p>
+
+
+            </div>
+
+        </section>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

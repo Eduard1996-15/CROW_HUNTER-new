@@ -1,0 +1,71 @@
+﻿@model AIRSOFTCROW_HUNTER.Models.Persona
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+   
+<h1>Edit</h1>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
+<h4>Persona</h4>
+<hr />
+<div class="row overflow-auto color">
+    <div class="col-md-4  ">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdPersona" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" name="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alias" class="control-label"></label>
+                <input asp-for="Alias" name="Alias" class="form-control" />
+                <span asp-validation-for="Alias" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rol" class="control-label"></label>
+                <input asp-for="Rol" name="Rol" class="form-control" />
+                <span asp-validation-for="Rol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaIngreso" class="control-label"></label>
+                <input asp-for="FechaIngreso" name="FechaIngreso" class="form-control" />
+                <span asp-validation-for="FechaIngreso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" name="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Biografía" class="control-label"></label>
+                <input asp-for="Biografía" name="Biografia" class="form-control" />
+                <span asp-validation-for="Biografía" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CancionMp3" class="control-label"></label>
+                <input asp-for="CancionMp3" name="CancionMp3" id="cancionInput" type="file" class="form-control" />
+                <span asp-validation-for="CancionMp3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fotos" class="control-label"></label>
+                <input asp-for="Fotos" name="Fotos" type="file" class="form-control" multiple>
+                <span asp-validation-for="Fotos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@section Scripts {
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,44 @@
+﻿@model AIRSOFTCROW_HUNTER.Models.Estadistica
+
+@{
+    ViewData["Title"] = "CreateEstadisticas";
+}
+
+<h1>Estadisticas</h1>
+
+<form asp-action="CreateEstadisticas" method="post" class="form-estadisticas color">
+    <input type="hidden" asp-for="IdPersona" value="@ViewBag.id"/>
+
+    <div class="form-group">
+        <label asp-for="Comunicacion">Comunicación</label>
+        <input asp-for="Comunicacion" type="number" min="30" max="100" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Experiencia">Experiencia</label>
+        <input asp-for="Experiencia" type="number" min="30" max="100" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Tecnica">Tecnica</label>
+        <input asp-for="Tecnica" type="number" min="30" max="100" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Disciplina">Disciplina</label>
+        <input asp-for="Disciplina" type="number" min="30" max="100" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Velocidad">Velocidad</label>
+        <input asp-for="Velocidad" type="number" min="30" max="100" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Ataque">Ataque</label>
+        <input asp-for="Ataque" type="number" min="30" max="100" class="form-control" />
+    </div>
+
+    <!-- Repite para cada estadística (Experiencia, Tecnica, etc.) -->
+
+    <button type="submit" class="btn btn-primary">Guardar Estadísticas</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

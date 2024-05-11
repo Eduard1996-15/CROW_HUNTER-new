@@ -1,0 +1,49 @@
+﻿@model List<Persona>
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .persona-item {
+        background-color: #f2f2f2;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: background-color 0.3s;
+    }
+
+    .persona-item:hover {
+        background-color: #e9e9e9;
+    }
+
+    form {
+        margin: 0;
+    }
+</style>
+    <div class="form-group container color">
+    <h2>Hunters</h2>
+    @foreach (var persona in Model)
+    {
+        using (Html.BeginForm("Inicio", "Personas", FormMethod.Post))
+        {
+            <button type="submit" asp-action="Details" asp-route-id="@persona.IdPersona" name="idPersona" class="persona-item">
+                @persona.Nombre
+            </button>
+            
+        }
+    }
+</div>

@@ -1,0 +1,155 @@
+﻿@model AIRSOFTCROW_HUNTER.Models.Persona
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      
+
+        canvas {
+            max-height: 100%;
+        }
+
+    .texto {
+        overflow-y: scroll; /* Agrega desplazamiento vertical */
+        height: 100vh; /* Establece la altura del div al 100% de la altura de la ventana */
+    }
+
+    </style>
+<div class="container mt-5">
+    <div class="row  d-flex align-items-center justify-content-center">
+        <!-- Datos del integrante a la izquierda -->
+        <div class="col-lg-4 col-md-4 col-sm-12 text-center color">
+            <h2>@Model.Nombre</h2>
+            <p><strong>Alias:</strong> @Model.Alias</p>
+            <p><strong>Rol:</strong> @Model.Rol</p>
+            <p><strong>Fecha de Ingreso:</strong> @Model.FechaIngreso</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>Biografía:</strong>@Model.Biografía</p>
+            <audio controls>
+                <source src="data:audio/mp3;base64,@Convert.ToBase64String(Model.CancionMp3)" type="audio/mp3">
+
+            </audio>
+        </div>
+        
+        <!-- Estadísticas en medio  -->
+        <div class="col-lg-4 col-md-4 col-sm-12 elementoTransparente color ">
+            <div class="col-12">
+                <canvas id="marksChart"></canvas>
+            </div>
+           
+        </div>
+
+        <!-- Carrusel de Fotos a la derecha -->
+        <div class="col-lg-4 col-md-4 col-sm-12  ">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @{
+                        bool isFirst = true;
+                        foreach (var foto in Model.Fotos)
+                        {
+                            <div class="carousel-item @(isFirst ? "active" : "")">
+                                <img src="data:image/png;base64,@(Convert.ToBase64String(foto.Imagen))" class="d-block  img-fluid mb-3 " alt="Foto del integrante">
+                            </div>
+                            isFirst = false;
+                        }
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+           
+        </div>
+    </div>
+
+   
+   
+</div>
+
+<script>
+        // Datos de ejemplo para el gráfico
+       
+            var marksCanvas = document.getElementById("marksChart");
+        
+            // Ajustar el tamaño del lienzo de la gráfica
+            marksCanvas.width = 400; // Ancho de 400 pixels
+            marksCanvas.height = 400; // Alto de 400 pixels
+
+            Chart.defaults.font.family = "Lato";
+            Chart.defaults.font.size = 22;
+            Chart.defaults.color = "black";
+            var dato = '@Model.Alias'
+            var marksData = {
+                labels: ['Comunicación', 'Experiencia', 'Técnica', 'Disciplina', 'Velocidad', 'Ataque'],
+                datasets: [{
+                    label: dato,
+                   backgroundColor: "rgba(255,99,132,0.2)",
+                     borderColor: "rgba(255,99,132,1)",
+                    fill: false,
+                    pointRadius: 6,
+                    pointHitRadius: 12,
+                    pointBorderWidth: 3,
+                    pointBackgroundColor: "rgba(255,99,132,1)", // Color de los puntos
+                    pointBorderColor: "#fff", // Color del borde de los puntos
+                    pointHoverRadius: 10,
+                    pointStyle: "circle",
+                data: [@Html.Raw(ViewBag.est.Comunicacion), @Html.Raw(ViewBag.est.Experiencia), @Html.Raw(ViewBag.est.Tecnica), @Html.Raw(ViewBag.est.Disciplina), @Html.Raw(ViewBag.est.Velocidad), @Html.Raw(ViewBag.est.Ataque)]
+                }]
+            };
+
+            var chartOptions = {
+            responsive: true, // Asegura que el gráfico sea responsivo
+            maintainAspectRatio: false, // Puedes ajustar esto según necesites
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Estadisticas",
+                        position: "bottom"
+                    },
+                    legend: {
+                        position: "bottom",
+                        labels: {
+                            padding: 20
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        max: 100,
+                        min: 30,
+                        ticks: {
+                            stepSize: 15,
+                            backdropColor: "orange",
+                            color: "white"
+                        },
+                        grid: {
+                            color: "black"
+                        },
+                        angleLines: {
+                            color: "gray"
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 20
+                            }
+                        }
+                    }
+                }
+            };
+
+            var radarChart = new Chart(marksCanvas, {
+                type: 'radar',
+                data: marksData,
+                options: chartOptions
+            });
+
+
+
+    </script>
+
+
+
